@@ -4,7 +4,7 @@
 [![Discord](https://img.shields.io/discord/808999754989961236.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/hyPu7f7K6W)
 
 
-![pun logo](https://pun.github.io/images/github-pun-logo.png)
+![pun logo](https://github.com/ParallelUniversesNetwork/ParallelUniversesNetwork/blob/main/pun.jpg)
 
 pun - A software for Flavor Physics Phenomenology
 =================================================
