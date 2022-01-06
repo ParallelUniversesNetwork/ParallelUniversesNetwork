@@ -1,0 +1,104 @@
+CLEANFILES = *~
+MAINTAINERCLEANFILES = Makefile.in
+
+AM_CXXFLAGS = @AM_CXXFLAGS@
+AM_LDFLAGS = @AM_LDFLAGS@
+
+lib_LTLIBRARIES = libpunformfactors.la
+libpunformfactors_la_SOURCES = \
+	analytic-b-to-pi.hh analytic-b-to-pi.cc \
+	analytic-b-to-pi-pi.hh analytic-b-to-pi-pi.cc \
+	analytic-b-to-p-lcsr.hh analytic-b-to-p-lcsr-impl.hh \
+	analytic-b-to-pi-lcsr.cc  analytic-b-to-k-lcsr.cc  analytic-b-to-d-lcsr.cc \
+	analytic-bs-to-k-lcsr.cc  analytic-bs-to-ds-lcsr.cc \
+	analytic-b-to-v-lcsr.hh analytic-b-to-v-lcsr-impl.hh \
+	analytic-bs-to-kstar-lcsr.cc analytic-bs-to-dsstar-lcsr.cc analytic-bs-to-phi-lcsr.cc \
+	analytic-b-to-rho-lcsr.cc analytic-b-to-kstar-lcsr.cc analytic-b-to-dstar-lcsr.cc \
+	baryonic.cc baryonic.hh baryonic-impl.hh \
+	b-lcdas.cc b-lcdas.hh \
+	form-factor-adapter.hh \
+	form-factors.cc form-factors.hh form-factors-fwd.hh \
+	hqet-b-to-c.hh hqet-b-to-c.cc \
+	kstar-lcdas.cc kstar-lcdas.hh \
+	mesonic.cc mesonic.hh mesonic-impl.hh \
+	mesonic-hqet.hh \
+	mesonic-processes.hh \
+	observables.cc observables.hh \
+	parametric-bgl1997.hh parametric-bgl1997-impl.hh parametric-bgl1997.cc \
+	pi-lcdas.cc pi-lcdas.hh \
+	unitarity-bounds.cc unitarity-bounds.hh \
+	zero-recoil-sum-rule.cc zero-recoil-sum-rule.hh
+libpunformfactors_la_CXXFLAGS = $(AM_CXXFLAGS) $(GSL_CXXFLAGS)
+libpunformfactors_la_LDFLAGS = $(AM_LDFLAGS) $(GSL_LDFLAGS)
+libpunformfactors_la_LIBADD = \
+	$(top_builddir)/pun/utils/libpunutils.la \
+	$(top_builddir)/pun/maths/libpunmaths.la \
+	$(top_builddir)/pun/models/libpunmodels.la \
+	-lgslcblas \
+	-lgsl
+
+include_pun_rarebdecaysdir = $(includedir)/pun/form-factors
+include_pun_rarebdecays_HEADERS = \
+	analytic-b-to-pi.hh \
+	analytic-b-to-pi-pi.hh \
+	b-lcdas.hh \
+	form-factor-adapter.hh \
+	form-factors.hh \
+	observables.hh \
+	parametric-bgl1997.hh \
+	pi-lcdas.hh
+
+AM_TESTS_ENVIRONMENT = \
+	export pun_TESTS_PARAMETERS="$(top_srcdir)/pun/parameters";
+
+TESTS = \
+	analytic-b-to-pi_TEST \
+	analytic-b-to-pi-pi_TEST \
+	analytic-b-to-p-lcsr_TEST \
+	analytic-b-to-v-lcsr_TEST \
+	baryonic_TEST \
+	b-lcdas_TEST \
+	hqet-b-to-c_TEST \
+	kstar-lcdas_TEST \
+	mesonic_TEST \
+	mesonic-hqet_TEST \
+	parametric-bgl1997_TEST \
+	pi-lcdas_TEST \
+	unitarity-bounds_TEST
+LDADD = \
+	$(top_builddir)/test/libpuntest.a \
+	libpunformfactors.la \
+	$(top_builddir)/pun/models/libpunmodels.la \
+	$(top_builddir)/pun/maths/libpunmaths.la \
+	$(top_builddir)/pun/utils/libpunutils.la \
+	$(top_builddir)/pun/libpun.la
+
+check_PROGRAMS = $(TESTS)
+
+analytic_b_to_pi_TEST_SOURCES = analytic-b-to-pi_TEST.cc
+
+analytic_b_to_pi_pi_TEST_SOURCES = analytic-b-to-pi-pi_TEST.cc
+analytic_b_to_pi_pi_TEST_CXXFLAGS = $(AM_CXXFLAGS) $(GSL_CXXFLAGS)
+
+analytic_b_to_p_lcsr_TEST_SOURCES = analytic-b-to-p-lcsr_TEST.cc
+
+analytic_b_to_v_lcsr_TEST_SOURCES = analytic-b-to-v-lcsr_TEST.cc
+
+baryonic_TEST_SOURCES = baryonic_TEST.cc
+
+b_lcdas_TEST_SOURCES = b-lcdas_TEST.cc
+
+hqet_b_to_c_TEST_SOURCES = hqet-b-to-c_TEST.cc
+
+kstar_lcdas_TEST_SOURCES = kstar-lcdas_TEST.cc
+
+mesonic_TEST_SOURCES = mesonic_TEST.cc
+
+mesonic_hqet_TEST_SOURCES = mesonic-hqet_TEST.cc
+
+parametric_bgl1997_TEST_SOURCES = parametric-bgl1997_TEST.cc
+
+pi_lcdas_TEST_SOURCES = pi-lcdas_TEST.cc
+
+unitarity_bounds_TEST_SOURCES = unitarity-bounds_TEST.cc
+

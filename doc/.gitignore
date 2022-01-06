@@ -1,0 +1,21 @@
+# custom Makefile
+!Makefile
+
+# Sphinx output
+_build
+
+# Doxygen output
+doctrees
+doxyoutput
+html
+log
+
+# VIM files
+.*.swp
+
+# the following files are generated
+constraints.rst
+observables.rst
+parameters.rst
+references.rst
+api/python.rst
